@@ -1,13 +1,28 @@
-      #map {
-        height: 100%;
-      }
+#map {
+  height: 100%;
+}
 
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+#searchInput{
+  z-index:2;
+  position:absolute;
+  left:31.1%;
+  top: 2.25%;
+  width:50%;
+}
+
+#searchButton{
+  z-index:2;
+  position:absolute;
+  left:81.1%;
+  top: 2.75%;
+  background-color: #1da1f2;
+}
 
 .emoji{
     display: inline-block;
