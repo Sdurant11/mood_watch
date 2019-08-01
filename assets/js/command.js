@@ -1,6 +1,8 @@
 class Command {
   constructor(){
-    this.keyword = "horses"
+    this.worldMap = new MapCreator();
+    this.coordinatesArray = [];
+    this.keyword = "taco"
     this.geocodeLocations = this.geocodeLocations.bind(this);
     this.textToEmotionGenerator = this.textToEmotionGenerator.bind(this);
     this.enterKeyEvent = this.enterKeyEvent.bind(this);
@@ -9,7 +11,6 @@ class Command {
     this.emotionText = new TextToEmotion();
     this.geocoder = new Geocoder();
     this.twitter.getUserLocation();
-    // window.on("click")
     window.addEventListener("keydown", this.enterKeyEvent);
     $("#searchButton").on("click", this.searchButtonEvent)
 
@@ -20,13 +21,12 @@ class Command {
       this.geocoder.getGeocodeCoordinates(locationArray[i]);
     }
   }
-
+  
   textToEmotionGenerator(textArray){
     for(var i = 0; i<textArray.length; i++){
       this.emotionText.analyzeAndAppendText(textArray[i]);
     }
   }
-
 
   enterKeyEvent(event){
     if ($(".form-control").val() && event.keyCode === 13 ){
@@ -44,5 +44,4 @@ class Command {
   appendToMap(coordinates, smiley){
 
   }
-
 }

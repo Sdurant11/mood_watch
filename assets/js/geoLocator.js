@@ -13,7 +13,11 @@ class Geocoder {
       dataType: 'json',
       success: function (response) {
         console.log('success', response);
-      },
+        if(response.status === "OK"){
+          commandCenter.coordinatesArray.push(response.results[0].geometry.location)
+        }
+      }.bind(this),
+
       error: function (error) {
         console.log('error', error);
       }
