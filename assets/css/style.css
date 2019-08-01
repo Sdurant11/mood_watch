@@ -24,6 +24,17 @@ html, body {
   background-color: #1da1f2;
 }
 
+.brown{
+  background-color: brown;
+}
+#clearButton{
+  z-index:2;
+  position:absolute;
+  left:81.1%;
+  top: 8%;
+  background-color:orange;
+}
+
 
 .emoji{
     display: inline-block;
