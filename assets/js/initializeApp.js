@@ -1,5 +1,6 @@
 $(document).ready(initializeApp);
-
+var commandCenter;
 function initializeApp(){
-  var commandCenter = new Command();
+  commandCenter = new Command();
+
 }
