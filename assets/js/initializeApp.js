@@ -4,3 +4,5 @@ function initializeApp(){
   commandCenter = new Command();
 
 }
+
+
