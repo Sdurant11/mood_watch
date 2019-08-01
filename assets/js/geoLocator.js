@@ -2,7 +2,7 @@ class Geocoder {
   constructor(){
     this.getGeocodeCoordinates = this.getGeocodeCoordinates.bind(this);
   }
-  getGeocodeCoordinates(location) {
+  getGeocodeCoordinates(location, ajaxFinishCheck) {
     var ajaxGeocodeSettings = {
       method: 'GET',
       url: 'https://maps.googleapis.com/maps/api/geocode/json',
@@ -16,7 +16,9 @@ class Geocoder {
         if(response.status === "OK"){
           commandCenter.coordinatesArray.push(response.results[0].geometry.location)
         }
+        ajaxFinishCheck();
       }.bind(this),
+
 
       error: function (error) {
         console.log('error', error);
