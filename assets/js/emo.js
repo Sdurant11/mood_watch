@@ -2,14 +2,13 @@
 class TextToEmotion {
 
 //pass in text and location of div from twitter.js
-  constructor(twitterText, location){
+  constructor(twitterText){
     this.tweet = twitterText;
-    this.position = location;
   }
 
 
 
-function analyzeAndAppendText(){
+ analyzeAndAppendText(tweet){
 
   var textToEmotionAjax = {
 
