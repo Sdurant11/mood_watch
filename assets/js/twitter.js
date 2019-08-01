@@ -7,7 +7,7 @@ class Twitter {
   }
   getUserLocation() {
     $.ajax({
-      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=5",
+      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=5&result_type=popular",
       dataType: "JSON",
       // method: 'POST',
       // oauth_comsumer_key: 'CLgwwtClkE95L1SC3JqKmijif',
