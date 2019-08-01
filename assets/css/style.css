@@ -7,3 +7,40 @@
         margin: 0;
         padding: 0;
       }
+
+
+.emoji{
+    display: inline-block;
+    height: 5vmin;
+    width: 5vmin;
+}
+
+.angry{
+  background: url('pics/angry.png');
+  background-size: cover;
+}
+
+.bored{
+  background: url('pics/bored.png');
+  background-size: cover;
+}
+
+.sad{
+  background: url('pics/sad.png');
+  background-size: cover;
+}
+
+.fear{
+  background: url('pics/fear.png');
+  background-size: cover;
+}
+
+.happy{
+  background: url('pics/happy.png');
+  background-size: cover;
+}
+
+.excited{
+  background: url('pics/excited.png');
+  background-size: cover;
+}

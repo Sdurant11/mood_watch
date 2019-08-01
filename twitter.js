@@ -15,7 +15,8 @@ function initializeApp(){
         // var output = Regex.Replace(input, @"[\d-]", string.Empty);
           var output = /\d/.test(response.statuses[i].user.location)
         if (response.statuses[i].user.location != '' || response.statuses[i].user.location == "Internet" || response.statuses[i].user.location == "the Internet"){
-          console.log(response.statuses[i].user.location)
+          console.log(response.statuses[i].user.location);
+          console.log(response.statuses[i].text);
         }
       }
     }
