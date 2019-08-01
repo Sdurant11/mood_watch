@@ -3,10 +3,10 @@ class Twitter {
   constructor(geocodeLocation, tweetText, query){
     this.geocodeLocation = geocodeLocation;
     this.tweetText = tweetText;
-    this.getUserLocation = this.getUserLocation.bind(this);
+    this.getUserLocationAndText = this.getUserLocationAndText.bind(this);
     this.keyword = query;
   }
-  getUserLocation() {
+  getUserLocationAndText() {
     $.ajax({
       url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=5&result_type=popular",
       dataType: "JSON",
