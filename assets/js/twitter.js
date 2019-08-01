@@ -7,7 +7,7 @@ class Twitter {
   }
   getUserLocation() {
     $.ajax({
-      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword,
+      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=5",
       dataType: "JSON",
       // method: 'POST',
       // oauth_comsumer_key: 'CLgwwtClkE95L1SC3JqKmijif',
@@ -20,7 +20,7 @@ class Twitter {
         console.log(response);
         for (var i = 0; i < response.statuses.length; i++) {
           // var output = Regex.Replace(input, @"[\d-]", string.Empty);
-          var output = /\d/.test(response.statuses[i].user.location)
+          // var output = /\d/.test(response.statuses[i].user.location)
           if (response.statuses[i].user.location != '' || response.statuses[i].user.location == "Internet" || response.statuses[i].user.location == "the Internet") {
             console.log(response.statuses[i].user.location)
             locationArray.push(response.statuses[i].user.location);
