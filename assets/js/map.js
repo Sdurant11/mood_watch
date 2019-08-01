@@ -30,6 +30,12 @@ class MapCreator{
           icon: image,
           position: commandCenter.coordinatesArray[i]
         })
+        
+        marker.addListener('click', function () {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+        });
+        
         this.markerArray.push(marker);
       }
       console.log($(".gm-style "))

@@ -5,6 +5,8 @@ class Twitter {
     this.tweetText = tweetText;
     this.getUserLocationAndText = this.getUserLocationAndText.bind(this);
     this.keyword = query;
+    this.tweetInfo = [];
+
   }
   getUserLocationAndText() {
     $.ajax({
@@ -17,24 +19,34 @@ class Twitter {
       // },
 
       success: function (response) {
+        console.log("response: " ,response);
         var locationArray = [];
         var textArray = [];
+
         console.log(response);
         for (var i = 0; i < response.statuses.length; i++) {
+          var tweetInfoObj = {}
           // var output = Regex.Replace(input, @"[\d-]", string.Empty);
           // var output = /\d/.test(response.statuses[i].user.location)
           if (response.statuses[i].user.location != '' || response.statuses[i].user.location == "Internet" || response.statuses[i].user.location == "the Internet") {
             console.log(response.statuses[i].user.location)
             locationArray.push(response.statuses[i].user.location);
+            tweetInfoObj.location = response.statuses[i].user.location;
           }
           if(response.statuses[i].text !== ""){
             console.log(response.statuses[i].text);
             textArray.push(response.statuses[i].text);
+            tweetInfoObj.text = response.statuses[i].text;
           }
+          if(response.statuses[i].user.screen_name){
+            tweetInfoObj.name = response.statuses[i].user.screen_name;
+          }
+          this.tweetInfo.push(tweetInfoObj);
         }
         console.log(locationArray)
         this.geocodeLocation(locationArray);
         this.tweetText(textArray);
+
         console.log(textArray);
       }.bind(this)
     })
