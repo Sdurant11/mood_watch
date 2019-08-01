@@ -23,14 +23,27 @@ class TextToEmotion {
 
     success: function (response) {
       console.log('success', response);
-      for (var feeling in response.emotion) {
-        if (response.emotion[feeling] > 0.5) {
-          feeling = feeling.toLowerCase();
-          var emojiDiv = $('<div>');
-          emojiDiv.addClass('emoji ' + feeling);
-          $('body').append(emojiDiv);
+      // for (var feeling in response.emotion) {
+      //   if (response.emotion[feeling] > 0.5) {
+      //     feeling = feeling.toLowerCase();
+      //     var emojiDiv = $('<div>');
+      //     emojiDiv.addClass('emoji ' + feeling);
+      //     $('body').append(emojiDiv);
+      //   }
+      // }
+      var emotionStats = response.emotion;
+      var emotionArray = Object.values(emotionStats);
+      var feelingAmount = Math.max(...emotionArray);
+      for (var key in emotionStats){
+        if (emotionStats[key] === feelingAmount){
+          var tweetMood = key;
         }
       }
+      tweetMood = tweetMood.toLowerCase();
+      console.log('feeling: '+ tweetMood);
+      var emojiDiv = $('<div>');
+      emojiDiv.addClass('emoji ' + tweetMood);
+      //$('body').append(emojiDiv);
     },
 
     error: function () {
