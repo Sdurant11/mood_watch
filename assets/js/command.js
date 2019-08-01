@@ -2,6 +2,8 @@ class Command {
   constructor(){
     this.worldMap = new MapCreator();
     this.coordinatesArray = [];
+    this.ajaxCallCounter = null;
+    this.ajaxFinishCheck = this.ajaxFinishCheck.bind(this);
     this.keyword = "taco"
     this.geocodeLocations = this.geocodeLocations.bind(this);
     this.textToEmotionGenerator = this.textToEmotionGenerator.bind(this);
@@ -16,12 +18,22 @@ class Command {
 
   }
 
-  geocodeLocations(locationArray){
-    for (var i = 0; i < locationArray.length; i++) {
-      this.geocoder.getGeocodeCoordinates(locationArray[i]);
+  ajaxFinishCheck(){
+    this.ajaxCallCounter--;
+    if(this.ajaxCallCounter < 1 ){
+      this.worldMap.createMarkers();
     }
   }
-  
+
+  geocodeLocations(locationArray){
+    for (var i = 0; i < locationArray.length; i++) {
+      this.ajaxCallCounter++;
+      this.geocoder.getGeocodeCoordinates(locationArray[i], this.ajaxFinishCheck);
+
+    }
+    this.worldMap.createMarkers();
+  }
+
   textToEmotionGenerator(textArray){
     for(var i = 0; i<textArray.length; i++){
       this.emotionText.analyzeAndAppendText(textArray[i]);

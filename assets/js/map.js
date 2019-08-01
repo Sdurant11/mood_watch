@@ -2,7 +2,7 @@
 class MapCreator{
   constructor(){
     this.map;
-
+    this.createMarkers = this.createMarkers.bind(this);
   }
   createMap(){
     this.map = new google.maps.Map(document.getElementById('map'), {
