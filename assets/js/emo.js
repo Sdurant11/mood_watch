@@ -4,11 +4,13 @@ class TextToEmotion {
 //pass in text and location of div from twitter.js
   constructor(twitterText){
     this.tweet = twitterText;
+    this.emojiDiv;
+    this.analyzeAndAppendText = this.analyzeAndAppendText.bind(this);
   }
 
 
 
- analyzeAndAppendText(tweet){
+ analyzeAndAppendText(tweet, ajaxFinishCheck){
 
   var textToEmotionAjax = {
 
@@ -22,6 +24,7 @@ class TextToEmotion {
     },
 
     success: function (response) {
+
       console.log('success', response);
       // for (var feeling in response.emotion) {
       //   if (response.emotion[feeling] > 0.5) {
@@ -40,10 +43,12 @@ class TextToEmotion {
         }
       }
       tweetMood = tweetMood.toLowerCase();
+      commandCenter.tweetMood.push(tweetMood);
       console.log('feeling: '+ tweetMood);
-      var emojiDiv = $('<div>');
-      emojiDiv.addClass('emoji ' + tweetMood);
+      this.emojiDiv = $('<div>');
+      this.emojiDiv.addClass('emoji ' + tweetMood);
       //$('body').append(emojiDiv);
+      ajaxFinishCheck();
     },
 
     error: function () {
