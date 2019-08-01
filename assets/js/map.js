@@ -2,7 +2,9 @@
 class MapCreator{
   constructor(){
     this.map;
+    this.markerArray = [];
     this.createMarkers = this.createMarkers.bind(this);
+    this.deleteMarkers = this.deleteMarkers.bind(this);
   }
   createMap(){
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -15,7 +17,7 @@ class MapCreator{
     if(commandCenter.coordinatesArray.length){
       for (var i = 0; i < commandCenter.coordinatesArray.length; i++){
         var image = {
-
+          
           url: "assets/pics/" + tweetMoodArray[i] + ".png",
           size: new google.maps.Size(71, 71),
           origin: new google.maps.Point(0, 0),
@@ -28,12 +30,25 @@ class MapCreator{
           icon: image,
           position: commandCenter.coordinatesArray[i]
         })
+        
         marker.addListener('click', function () {
           map.setZoom(8);
           map.setCenter(marker.getPosition());
         });
-
+        
+        this.markerArray.push(marker);
       }
+      console.log($(".gm-style "))
+      // $(".gm-style > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(3)").remove()
+      // $(".gm-style > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(3)").remove()
+      // marker.setMap(null);
+      // this.markerArray.push(marker);
+    }
+  }
+
+  deleteMarkers(){
+    for ( var idz = 0 ; idz < this.markerArray.length; idz++){
+      this.markerArray[idz].setMap(null);
     }
   }
 
