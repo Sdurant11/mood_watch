@@ -1,0 +1,73 @@
+#map {
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#searchInput{
+  z-index:2;
+  position:absolute;
+  left:31.1%;
+  top: 2.25%;
+  width:50%;
+}
+
+#searchButton{
+  z-index:2;
+  position:absolute;
+  left:81.1%;
+  top: 2.75%;
+  background-color: #1da1f2;
+}
+
+.brown{
+  background-color: brown;
+}
+#clearButton{
+  z-index:2;
+  position:absolute;
+  left:81.1%;
+  top: 8%;
+  background-color:orange;
+}
+
+
+.emoji{
+    display: inline-block;
+    height: 5vmin;
+    width: 5vmin;
+}
+
+.angry{
+  background: url('pics/angry.png');
+  background-size: cover;
+}
+
+.bored{
+  background: url('pics/bored.png');
+  background-size: cover;
+}
+
+.sad{
+  background: url('pics/sad.png');
+  background-size: cover;
+}
+
+.fear{
+  background: url('pics/fear.png');
+  background-size: cover;
+}
+
+.happy{
+  background: url('pics/happy.png');
+  background-size: cover;
+}
+
+.excited{
+  background: url('pics/excited.png');
+  background-size: cover;
+}
