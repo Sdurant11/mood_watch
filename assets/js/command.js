@@ -1,6 +1,7 @@
 class Command {
   constructor(){
     this.tweetMood = []
+    this.markerStorageArray = [];
     this.coordinatesArray = [];
     this.ajaxCallCounter = null;
     this.ajaxFinishCheck = this.ajaxFinishCheck.bind(this);
@@ -51,6 +52,9 @@ class Command {
       this.twitter.tweetInfo = [];
       this.tweetMood = []
       this.coordinatesArray = [];
+      for (var i = 0; i < this.worldMap.markerArray.length; i++){
+        this.markerStorageArray.push(this.worldMap.markerArray[i]);
+      }
       this.worldMap.markerArray = [];
     if ($(".form-control").val()){
       this.twitter.keyword = $(".form-control").val()
@@ -64,6 +68,7 @@ class Command {
     this.coordinatesArray = [];
     this.worldMap.deleteMarkers();
     this.worldMap.markerArray = [];
+    this.markerStorageArray = [];
   }
 
 }

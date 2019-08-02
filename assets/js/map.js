@@ -50,6 +50,7 @@ class MapCreator{
   deleteMarkers(){
     for ( var idz = 0 ; idz < this.markerArray.length; idz++){
       this.markerArray[idz].setMap(null);
+      commandCenter.markerStorageArray[idz].setMap(null);
     }
   }
 
