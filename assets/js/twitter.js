@@ -10,44 +10,35 @@ class Twitter {
   }
   getUserLocationAndText() {
     $.ajax({
-      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=5&result_type=popular",
+      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=10&result_type=popular",
       dataType: "JSON",
-      // method: 'POST',
-      // oauth_comsumer_key: 'CLgwwtClkE95L1SC3JqKmijif',
-      // data: {
-      //   search_term: "cats",
-      // },
 
       success: function (response) {
-        console.log("response: " ,response);
         var locationArray = [];
         var textArray = [];
-
-        console.log(response);
         for (var i = 0; i < response.statuses.length; i++) {
           var tweetInfoObj = {}
-          // var output = Regex.Replace(input, @"[\d-]", string.Empty);
-          // var output = /\d/.test(response.statuses[i].user.location)
           if (response.statuses[i].user.location != '' || response.statuses[i].user.location == "Internet" || response.statuses[i].user.location == "the Internet") {
-            console.log(response.statuses[i].user.location)
             locationArray.push(response.statuses[i].user.location);
             tweetInfoObj.location = response.statuses[i].user.location;
           }
+          else{
+            locationArray.push("antarctica");
+          }
           if(response.statuses[i].text !== ""){
-            console.log(response.statuses[i].text);
             textArray.push(response.statuses[i].text);
             tweetInfoObj.text = response.statuses[i].text;
           }
+
           if(response.statuses[i].user.screen_name){
             tweetInfoObj.name = response.statuses[i].user.screen_name;
           }
+
           this.tweetInfo.push(tweetInfoObj);
         }
-        console.log(locationArray)
         this.geocodeLocation(locationArray);
         this.tweetText(textArray);
 
-        console.log(textArray);
       }.bind(this)
     })
 

@@ -1,7 +1,5 @@
 
 class TextToEmotion {
-
-//pass in text and location of div from twitter.js
   constructor(twitterText){
     this.tweet = twitterText;
     this.emojiDiv;
@@ -10,8 +8,7 @@ class TextToEmotion {
 
 
 
- analyzeAndAppendText(tweet, ajaxFinishCheck){
-
+ analyzeAndAppendText(tweet, ajaxFinishCheck, index){
   var textToEmotionAjax = {
 
     url: "https://apis.paralleldots.com/v4/emotion",
@@ -24,16 +21,6 @@ class TextToEmotion {
     },
 
     success: function (response) {
-
-      console.log('success', response);
-      // for (var feeling in response.emotion) {
-      //   if (response.emotion[feeling] > 0.5) {
-      //     feeling = feeling.toLowerCase();
-      //     var emojiDiv = $('<div>');
-      //     emojiDiv.addClass('emoji ' + feeling);
-      //     $('body').append(emojiDiv);
-      //   }
-      // }
       var emotionStats = response.emotion;
       var emotionArray = Object.values(emotionStats);
       var feelingAmount = Math.max(...emotionArray);
@@ -43,11 +30,9 @@ class TextToEmotion {
         }
       }
       tweetMood = tweetMood.toLowerCase();
-      commandCenter.tweetMood.push(tweetMood);
-      console.log('feeling: '+ tweetMood);
+      commandCenter.tweetMood[index] = tweetMood;
       this.emojiDiv = $('<div>');
       this.emojiDiv.addClass('emoji ' + tweetMood);
-      //$('body').append(emojiDiv);
       ajaxFinishCheck();
     },
 

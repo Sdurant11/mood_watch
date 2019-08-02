@@ -1,4 +1,3 @@
-// GOOGLE MAPS jacvascript map API KEY: AIzaSyDNUkV37SJjXxiUK09iPw3yH2WCRZ7XvtA
 class MapCreator{
   constructor(){
     this.map;
@@ -17,32 +16,34 @@ class MapCreator{
     if(commandCenter.coordinatesArray.length){
       for (var i = 0; i < commandCenter.coordinatesArray.length; i++){
         var image = {
-          
+
           url: "assets/pics/" + tweetMoodArray[i] + ".png",
           size: new google.maps.Size(71, 71),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 34),
           scaledSize: new google.maps.Size(25, 25)
         };
+
+        var contentString = '<div>'+ commandCenter.twitter.tweetInfo[i].name+ '</div>' + '<div>' +commandCenter.twitter.tweetInfo[i].location+ '</div>' + '<div>'+ commandCenter.twitter.tweetInfo[i].text+'</div>';
+        var infoWindow = new google.maps.InfoWindow({
+          content: contentString
+        });
         var marker = new google.maps.Marker({
           map: this.map,
+          title: commandCenter.twitter.tweetInfo[i].name,
           draggable: false,
           icon: image,
           position: commandCenter.coordinatesArray[i]
         })
-        
-        marker.addListener('click', function () {
-          map.setZoom(8);
-          map.setCenter(marker.getPosition());
-        });
-        
+
+        marker.addListener('click', (function (map, marker, infoWindow) {
+          return function(){
+            infoWindow.open(map, marker)
+          }
+        })(this.map, marker, infoWindow));
+
         this.markerArray.push(marker);
       }
-      console.log($(".gm-style "))
-      // $(".gm-style > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(3)").remove()
-      // $(".gm-style > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(3)").remove()
-      // marker.setMap(null);
-      // this.markerArray.push(marker);
     }
   }
 
