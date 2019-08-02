@@ -17,7 +17,7 @@ class TextToEmotion {
 
     data: {
       "text": tweet,
-      "api_key": "yUwuC25XTQCfAg2fcbENogGOQgsyBiEHWG1oGrz62v0"
+      "api_key": "XdpD94sfKnsTHmVIGEkIpKK9XGeN4lh8EED6XjZuHQA"
     },
 
     success: function (response) {
