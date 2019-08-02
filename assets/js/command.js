@@ -4,7 +4,7 @@ class Command {
     this.coordinatesArray = [];
     this.ajaxCallCounter = null;
     this.ajaxFinishCheck = this.ajaxFinishCheck.bind(this);
-    this.keyword = "taco"
+    this.keyword = "gibberjabbertiddlywink"
     this.geocodeLocations = this.geocodeLocations.bind(this);
     this.textToEmotionGenerator = this.textToEmotionGenerator.bind(this);
     this.enterKeyEvent = this.enterKeyEvent.bind(this);
@@ -30,18 +30,14 @@ class Command {
   geocodeLocations(locationArray){
     for (var i = 0; i < locationArray.length; i++) {
       this.ajaxCallCounter++;
-      this.geocoder.getGeocodeCoordinates(locationArray[i], this.ajaxFinishCheck);
-
+      this.geocoder.getGeocodeCoordinates(locationArray[i], this.ajaxFinishCheck, i);
     }
-
-    // $(".gm-style > div > div:nth-child(3) > div > div:nth-child(3) > img").remove();
-    // $(".gm-style > div > div:nth-child(3) > div > div:nth-child(3)").append(this.emotionText.emojiDiv);
   }
 
   textToEmotionGenerator(textArray){
     for(var i = 0; i<textArray.length; i++){
       this.ajaxCallCounter++;
-      this.emotionText.analyzeAndAppendText(textArray[i], this.ajaxFinishCheck);
+      this.emotionText.analyzeAndAppendText(textArray[i], this.ajaxFinishCheck, i);
     }
   }
 
@@ -52,14 +48,22 @@ class Command {
     }
   }
   searchButtonEvent(event){
+      this.twitter.tweetInfo = [];
+      this.tweetMood = []
+      this.coordinatesArray = [];
+      this.worldMap.markerArray = [];
     if ($(".form-control").val()){
       this.twitter.keyword = $(".form-control").val()
       this.twitter.getUserLocationAndText();
+
     }
   }
   clearButtonEvent(event){
-    console.log(event);
+    this.twitter.tweetInfo = [];
+    this.tweetMood = []
+    this.coordinatesArray = [];
     this.worldMap.deleteMarkers();
+    this.worldMap.markerArray = [];
   }
 
 }
