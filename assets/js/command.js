@@ -15,6 +15,7 @@ class Command {
     this.emotionText = new TextToEmotion();
     this.geocoder = new Geocoder();
     this.worldMap = new MapCreator();
+    this.worldMap.createMap();
     this.twitter.getUserLocationAndText();
     window.addEventListener("keydown", this.enterKeyEvent);
     $("#searchButton").on("click", this.searchButtonEvent);
@@ -22,9 +23,11 @@ class Command {
   }
 
   ajaxFinishCheck(){
+
     this.ajaxCallCounter--;
     if(this.ajaxCallCounter < 1 ){
       this.worldMap.createMarkers(this.tweetMood);
+
     }
   }
 
@@ -43,6 +46,13 @@ class Command {
   }
 
   enterKeyEvent(event){
+    this.twitter.tweetInfo = [];
+    this.tweetMood = []
+    this.coordinatesArray = [];
+    for (var i = 0; i < this.worldMap.markerArray.length; i++) {
+      this.markerStorageArray.push(this.worldMap.markerArray[i]);
+    }
+    this.worldMap.markerArray = [];
     if ($(".form-control").val() && event.keyCode === 13 ){
       this.twitter.keyword = $(".form-control").val()
       this.twitter.getUserLocationAndText();
