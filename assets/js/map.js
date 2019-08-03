@@ -15,8 +15,34 @@ class MapCreator{
   }
 
   createMarkers(tweetMoodArray){
+
+
     if (!commandCenter.coordinatesArray.length) return;
 
+
+
+    debugger;
+    for (var outerIndex = 0; outerIndex < commandCenter.coordinatesArray.length; outerIndex++) {
+      if (commandCenter.coordinatesArray[outerIndex]){
+      var currentCoordLat = commandCenter.coordinatesArray[outerIndex].lat;
+      var currentCoordLng = commandCenter.coordinatesArray[outerIndex].lng;
+      }
+      for (var innerIndex = outerIndex +1; innerIndex < commandCenter.coordinatesArray.length; innerIndex++){
+        if (commandCenter.coordinatesArray[innerIndex]) {
+          var currentCoordLatComparison = commandCenter.coordinatesArray[innerIndex].lat;
+          var currentCoordLngComparison = commandCenter.coordinatesArray[innerIndex].lng;
+          if(currentCoordLat === currentCoordLatComparison && currentCoordLng === currentCoordLngComparison){
+            var randomNum = Math.random() * .15;
+            var randPosOrNeg = Math.random();
+            if (randPosOrNeg < .5){
+              randomNum *= -1
+            }
+            commandCenter.coordinatesArray[innerIndex].lng += randomNum;
+          }
+
+        }
+      }
+    }
 
     for (let i = 0; i < commandCenter.coordinatesArray.length; i++){
         const image = {
@@ -51,6 +77,8 @@ class MapCreator{
         this.currentInfoWindow.open(this.map, marker)
 
       })
+
+
       // marker.addListener('click', (function (map, marker, infoWindow) {
       //   return function(){
       //     if (this.markerWindowCounter) {
@@ -66,8 +94,12 @@ class MapCreator{
 
       this.markerArray.push(marker);
     }
+    let markerCluster = new MarkerClusterer(this.map, this.markerArray,
+      { imagePath: 'assets/pics/thinking.jpg/m' });
 
   }
+
+
 
   deleteMarkers(){
     for ( let idz = 0 ; idz < this.markerArray.length; idz++){
