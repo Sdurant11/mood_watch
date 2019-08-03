@@ -23,7 +23,15 @@ html, body {
   top: 2.75%;
   background-color: #1da1f2;
 }
-
+#locationSearchButton{
+  z-index:2;
+  position:absolute;
+  left:81.1%;
+  height: 3%;
+  top: 8.25%;
+  background-color: yellow;
+  padding-top: 0%;
+}
 .brown{
   background-color: brown;
 }
@@ -31,8 +39,16 @@ html, body {
   z-index:2;
   position:absolute;
   left:81.1%;
-  top: 8%;
+  top: 11.4%;
   background-color:orange;
+}
+
+#locationSearchBar{
+  z-index:2;
+  position:absolute;
+  left:31.1%;
+  top: 8.5%;
+  width:50%;
 }
 
 
