@@ -17,6 +17,7 @@ class Geocoder {
           commandCenter.coordinatesArray[index] = response.results[0].geometry.location;
         }
 
+
         ajaxFinishCheck();
       }.bind(this),
 

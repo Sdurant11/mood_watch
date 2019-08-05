@@ -1,8 +1,9 @@
 
 class Twitter {
-  constructor(geocodeLocation, tweetText, query){
+  constructor(geocodeLocation, tweetText,query, locationQuery){
     this.geocodeLocation = geocodeLocation;
     this.tweetText = tweetText;
+    this.wantedLocation = locationQuery;
     this.getUserLocationAndText = this.getUserLocationAndText.bind(this);
     this.keyword = query;
     this.tweetInfo = [];
@@ -10,8 +11,13 @@ class Twitter {
 
   }
   getUserLocationAndText() {
+    if (this.keyword && this.wantedLocation){
+      this.keyword = this.keyword +" " + this.wantedLocation;
+
+    }
+    console.log(this.keyword);
     $.ajax({
-      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q="+this.keyword+"&count=10&result_type=popular",
+      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q=" + this.keyword +"&src=typed_query&count=3&result_type=mixed",
       dataType: "JSON",
 
       success: function (response) {
