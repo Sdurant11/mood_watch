@@ -17,7 +17,7 @@ class Twitter {
     }
     console.log(this.keyword);
     $.ajax({
-      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q=" + this.keyword +"&src=typed_query&count=10&result_type=mixed",
+      url: "http://localhost/c619_hackathon2/twitter-search-proxy.php?q=" + this.keyword +"&src=typed_query&count=20&result_type=mixed",
       dataType: "JSON",
 
       success: function (response) {
