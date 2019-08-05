@@ -6,6 +6,7 @@ class Twitter {
     this.getUserLocationAndText = this.getUserLocationAndText.bind(this);
     this.keyword = query;
     this.tweetInfo = [];
+    this.makeLinksClickable = this.makeLinksClickable.bind(this);
 
   }
   getUserLocationAndText() {
@@ -26,8 +27,10 @@ class Twitter {
             locationArray.push("antarctica");
           }
           if(response.statuses[i].text !== ""){
-            textArray.push(response.statuses[i].text);
-            tweetInfoObj.text = response.statuses[i].text;
+            var text = response.statuses[i].text;
+            var clickableText = this.makeLinksClickable(text);
+            textArray.push(clickableText);
+            tweetInfoObj.text = clickableText;
           }
 
           if(response.statuses[i].user.screen_name){
@@ -42,6 +45,11 @@ class Twitter {
       }.bind(this)
     })
 
+  }
+
+  makeLinksClickable(text){
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(exp,"<a href='$1'>$1</a>"); 
   }
 }
 
